@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>MPOV</title>
 
     <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
@@ -46,7 +47,7 @@
         // CODELAB: Register service worker.
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('https://https://handbros.github.io/meal-plan/service-worker.js'
+                navigator.serviceWorker.register('https://handbros.github.io/meal-plan/service-worker.js'
                 ).then((reg) => {
                     console.log('Service worker registered.', reg);
                 });
