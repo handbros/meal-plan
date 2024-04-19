@@ -19,9 +19,9 @@
     "display": "standalone",
     "dir": "auto",
     "lang": "ko-KR",
-    "name": "식단표",
-    "short_name": "식단표",
+    "name": "Meal Plan Offline Viewer",
+    "short_name": "MPOV",
     "start_url": "https://handbros.github.io/meal-plan",
     "description": "A PWA to display meal plans of the Republic of Korea Air Force 11th Fighter Wing in an offline environment.",
-    "id": "11-tfw-meal-plan"
+    "id": "mpov"
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MPOV</title>
+
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+</head>
+
+<body data-bs-theme="light">
+    <!-- UI : NAVBAR -->
+    <nav class="navbar navbar_options sticky-top bg-body-secondary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand non-draggable d-flex align-items-center mb-0 text-decoration-none">
+                <img src="./assets/favicon.ico" class="bi ms-2 me-2" width="32" height="32" >
+                <p class="align-middle text-start text-body fs-5 m-0">병사식당 식단표 오프라인 뷰어</p>
+            </a>
+            <button class="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">식단</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">정보</a>
+                </li>
+                <hr>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">오프라인 앱 설치</a>
+                  </li>
+              </ul>
+            </div>
+          </div>
+    </nav>
+
+    <div class="grid_body p-3">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill mb-1" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+            </svg>
+            <strong>공지사항</strong> 현재 체계 개발이 완료되지 않아 체계 사용에 문제가 있을 수 있습니다.
+            <!-- UI : ALERTS CLOSE BUTTON -->
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/install.js"></script>
+    <script>
+        // CODELAB: Register service worker.
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('https://https://handbros.github.io/meal-plan/service-worker.js'
+                ).then((reg) => {
+                    console.log('Service worker registered.', reg);
+                });
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

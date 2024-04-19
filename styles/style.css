@@ -3,16 +3,16 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-.grid_header {
+.centered_container {
   width: 100vw;
-  height: 60px;
-  border-bottom: 1px solid rgb(240, 240, 240);
+  height: 100vh;
+  display : flex;
+  justify-content : center;
+  align-items : center;
 }
 
-.grid_body {
-  width: 100vw;
-  height: calc(100vh - 60px);
-
+.navbar_options {
+  border-bottom: 1px solid rgb(240, 240, 240);
 }
 
 .non-draggable {

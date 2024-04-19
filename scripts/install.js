@@ -28,8 +28,7 @@ function saveBeforeInstallPromptEvent(evt) {
 function installPWA(evt) {
     // CODELAB: Add code show install prompt & hide the install button.
     deferredInstallPrompt.prompt();
-    // Hide the install button, it can't be called twice.
-    installButton.style.display = "none";
+
     // CODELAB: Log user response to prompt.
     deferredInstallPrompt.userChoice
         .then((choice) => {
@@ -43,14 +42,18 @@ function installPWA(evt) {
 }
 
 // CODELAB: Add event listener for appinstalled event
-window.addEventListener('appinstalled', logAppInstalled);
+window.addEventListener('appinstalled', onAfterAppInstalled);
+
 /**
  * Event handler for appinstalled event.
  *   Log the installation to analytics or save the event somehow.
  *
  * @param {Event} evt
  */
-function logAppInstalled(evt) {
+function onAfterAppInstalled(evt) {
+    // Hide the install button, it can't be called twice.
+    installButton.style.display = "none";
+
     // CODELAB: Add code to log the event
-    console.log('Weather App was installed.', evt);
+    console.log('The application was installed.', evt);
 }
