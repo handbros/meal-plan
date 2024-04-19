@@ -44,6 +44,24 @@ function installPWA(evt) {
 // CODELAB: Add event listener for appinstalled event
 window.addEventListener('appinstalled', onAfterAppInstalled);
 
+// Check the current environment.
+const UA = window.navigator.userAgent || window.navigator.vendor || window.opera
+const TYPE = isMobile();
+
+function isMobile() {
+    var ua = navigator.userAgent.toLowerCase();
+
+    if (ua.indexOf('kakaotalk') > -1) {
+        return "kakaotalk";
+    } else if (ua.indexOf('android') > -1) {
+        return "android";
+    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) {
+        return "ios";
+    } else {
+        return "other";
+    }
+}
+
 /**
  * Event handler for appinstalled event.
  *   Log the installation to analytics or save the event somehow.
@@ -55,5 +73,12 @@ function onAfterAppInstalled(evt) {
     console.log('The application was installed.', evt);
 
     // Close the current window.
-    window.open('','_self').close(); 
+    if (TYPE == 'kakaotalk') {
+        window.location.href = (/iPad|iPhone|iPod/.test(UA)) ? 'kakaoweb://closeBrowser' : 'kakaotalk://inappbrowser/close';
+    } else if (type == 'ios') {
+        window.open(", '_self', ");
+        window.close();
+    } else {
+        window.open('about:blank','_self').self.close();
+    }
 }

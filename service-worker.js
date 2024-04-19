@@ -6,7 +6,8 @@ const DATA_CACHE_NAME = 'data-cache-v5';
 // CODELAB: Add list of files to cache here.
 const FILES_TO_CACHE = [
     '.',
-    './index.html',
+    './plan.html',
+    './about.html',
     './scripts/app.js',
     './scripts/install.js',
     './styles/style.css',
@@ -65,7 +66,7 @@ self.addEventListener('fetch', (evt) => {
         .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                    return cache.match('offline.html');
+                    return cache.match('plan.html');
                 });
         })
     );
