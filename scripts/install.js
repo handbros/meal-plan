@@ -51,9 +51,6 @@ window.addEventListener('appinstalled', onAfterAppInstalled);
  * @param {Event} evt
  */
 function onAfterAppInstalled(evt) {
-    // Hide the install button, it can't be called twice.
-    installButton.style.display = "none";
-
     // CODELAB: Add code to log the event
     console.log('The application was installed.', evt);
 }
