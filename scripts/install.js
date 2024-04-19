@@ -53,4 +53,7 @@ window.addEventListener('appinstalled', onAfterAppInstalled);
 function onAfterAppInstalled(evt) {
     // CODELAB: Add code to log the event
     console.log('The application was installed.', evt);
+
+    // Close the current window.
+    window.open('','_self').close(); 
 }
