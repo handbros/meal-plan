@@ -1,0 +1,12 @@
+주간 메뉴 요청 API
+URL : https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php
+Format :
+- day : 리스트(DisplayDate, 요일, Date, ?, timeCd)
+- timeCd
+- data : 리스트(식수 구분, 메뉴 구분, 주메뉴 이름, 칼로리, 전체 구성 메뉴, 사진 경로, 사진 파일명, )
+METHOD : POST
+REQ Form : requestId=search_week, requestFormId=frmWeek  operCd=O000002, topAssignCd=S000500, menuDay
+
+테스트 : https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php?requestId=search_week&requestMode=1&requestFormId=frmWeek&operCd=O000002&topAssignCd=S000500&menuDay=0
+
+LOCAL_FORM = frmWeek 또는 frmToday
