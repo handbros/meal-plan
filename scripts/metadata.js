@@ -1,4 +1,4 @@
-let version = "1.24.37"
+let version = "1.27.10"
 
 function isDevMode() {
     return (window.location.hostname.toLowerCase() != "handbros.github.io")
