@@ -16,11 +16,3 @@ var rippleEffect = (function(){
         }
     })
 })();
-
-function navigate(navigationSource) {
-    var offcanvas = document.getElementById("offcanvasSideBar");
-    var openedCanvas = bootstrap.Offcanvas.getInstance(offcanvas);
-    openedCanvas.hide();
-
-    setTimeout(() => location.href = navigationSource, 100);
-}

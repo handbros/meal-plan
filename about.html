@@ -50,7 +50,7 @@
       <div class="offcanvas-body m-0 p-0">
         <div class="d-flex flex-column m-3">
           <span class="text text-body-secondary" style="font-size: 0.8em">식단표</span>
-          <button type="button" class="btn btn-light offcanvas_button bg-body text-start text-body mt-3" onclick="navigate('./plan_daily.html')">
+          <button type="button" class="btn btn-light offcanvas_button bg-body text-start text-body mt-3" onclick="location.href='./plan_daily.html'">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event me-1 mb-1" viewBox="0 0 16 16">
               <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
               <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
@@ -81,7 +81,7 @@
             </svg>
             <span class="text" style="font-size: 0.9em">설정</span>
           </button>
-          <button type="button" class="btn btn-outline-primary offcanvas_button bg-body text-start text-body mt-1 active" onclick="location.href='#'">
+          <button type="button" class="btn btn-outline-primary offcanvas_button bg-body text-start text-primary mt-1 active" onclick="location.href='#'">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle me-1 mb-1" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
               <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -92,32 +92,41 @@
       </div>
     </div>
 
-    <div class="p-3">
+    <div class="ps-5 pe-5 pt-4 pb-4">
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill mb-1" viewBox="0 0 16 16">
                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
             </svg>
-            <strong>공지사항</strong> 현재 체계 개발이 진행중인 관계로 체계 사용에 문제가 있을 수 있습니다.
+            <strong>공지사항</strong> 현재 체계 개발이 진행중인 관계로 원활한 이용이 어려울 수 있습니다.
             <!-- UI : ALERTS CLOSE BUTTON -->
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <div class="d-flex content-items-center justify-contents-center text-body-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16">
-            <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139q.323-.119.684-.12h5.396z"/>
-          </svg>
-          <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active">Home</li>
-              <li class="breadcrumb-item active">Library</li>
-            </ol>
-          </nav>
+        <!-- UI : HEADER -->
+        <h2 class="non-draggable text text-body fw-semibold">정보</h2>
+
+        <!-- UI : LOGOTYPE -->
+        <div class="non-draggable d-flex align-items-center mb-0 text-decoration-none mt-3">
+          <img src="./assets/favicon.ico" class="bi me-1" style="filter: grayscale(100%);" width="48" height="48" >
+          <div class="d-block align-middle mb-1">
+            <p class="text-start text-body-secondary font_outfit fw-semibold fs-4 lh-sm m-0">MPOV</p>
+            <p class="text-start text-body-secondary fw-semibold lh-sm m-0" style="font-size: 0.8em">병사식당 식단표 오프라인 뷰어</p>
+          </div>
+        </div>
+
+        <!-- UI : DETAILS -->
+        <div class="mt-3">
+          <p class="text-start text-wrap text-body-tertiary" style="font-size: 0.8em">버전 <span id="mpov-version"></span> | <span id="mpov-status"></span> | <span id="mpov-provider"></span></p>
+          <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">이 애플리케이션은 <a href="https://getbootstrap.com/">Bootstrap</a> 오픈 소스 프로젝트 및 기타 오픈 소스 소프트웨어를 기반으로 작동합니다.<br>본 애플리케이션의 모든 구성요소(제3자 오픈소스 소프트웨어 제외)는 <a href="https://opensource.org/license/mit">MIT 라이선스</a> 하에 자유 이용이 허락됩니다.</p>
+          <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">본 애플리케이션에서 사용되는 모든 원본(RAW) 데이터는 풀무원 API를 통해 제공받고 있습니다.</p>
+          <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">ⓒ 2024 handbros. All rights reserved.</p>
         </div>
     </div>
 
     <!-- SCRIPTS -->
     <script src="./scripts/app.js"></script>
     <script src="./scripts/ui.js"></script>
+    <script src="./scripts/metadata.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
