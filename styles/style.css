@@ -3,6 +3,17 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+.font_outfit {
+  font-family: "Outfit", sans-serif;
+}
+
+.non-draggable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .centered_container {
   width: 100vw;
   height: 100vh;
@@ -11,13 +22,16 @@ body {
   align-items : center;
 }
 
-.navbar_options {
+.navbar_divider {
   border-bottom: 1px solid rgb(240, 240, 240);
 }
 
-.non-draggable {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.offcanvas{
+  width:250px !important;
+}
+
+.offcanvas_button {
+  --bs-btn-padding-y: .75rem;
+  --bs-btn-padding-x: 1.0rem;
+  --bs-btn-font-size: 1.0rem;
 }
