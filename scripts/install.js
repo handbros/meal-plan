@@ -1,8 +1,33 @@
 'use strict';
 
+// Check the current environment.
+const UA = window.navigator.userAgent || window.navigator.vendor || window.opera
+const TYPE = getEnvironment();
+
+function getEnvironment() {
+    var ua = navigator.userAgent.toLowerCase();
+
+    if (ua.indexOf('kakaotalk') > -1) {
+        return "kakaotalk";
+    } else if (ua.indexOf('android') > -1) {
+        return "android";
+    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) {
+        return "ios";
+    } else {
+        return "other";
+    }
+}
+
 let deferredInstallPrompt = null;
 const installButton = document.getElementById('btn-install');
-installButton.addEventListener('click', installPWA);
+const notInstallableNotice = document.getElementById('notice-not-installable');
+
+if (TYPE != 'other') {
+    installButton.addEventListener('click', installPWA);
+    notInstallableNotice.style.display = 'none';
+} else {
+    installButton.style.display = 'none';
+}
 
 // CODELAB: Add event listener for beforeinstallprompt event
 window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
@@ -43,24 +68,6 @@ function installPWA(evt) {
 
 // CODELAB: Add event listener for appinstalled event
 window.addEventListener('appinstalled', onAfterAppInstalled);
-
-// Check the current environment.
-const UA = window.navigator.userAgent || window.navigator.vendor || window.opera
-const TYPE = isMobile();
-
-function isMobile() {
-    var ua = navigator.userAgent.toLowerCase();
-
-    if (ua.indexOf('kakaotalk') > -1) {
-        return "kakaotalk";
-    } else if (ua.indexOf('android') > -1) {
-        return "android";
-    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) {
-        return "ios";
-    } else {
-        return "other";
-    }
-}
 
 /**
  * Event handler for appinstalled event.
