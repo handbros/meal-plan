@@ -28,9 +28,11 @@ const uaLabel = document.getElementById('ua-label');
 setTimeout(() => divLoading.style.display = 'none', Math.floor(Math.random() * (1500 - 500)) + 500);
 
 if (TYPE != 'other') {
+    // INSTALLABLE
     installButton.addEventListener('click', installPWA);
     divNotInstallable.style.display = 'none';
 } else {
+    // NOT INSTALLABLE
     divInstallation.style.display = 'none';
     uaLabel.innerHTML = UA;
 }
@@ -48,7 +50,6 @@ function saveBeforeInstallPromptEvent(evt) {
     // CODELAB: Add code to save event & show the install button.
     deferredInstallPrompt = evt;
 }
-
 
 /**
  * Event handler for butInstall - Does the PWA installation.
