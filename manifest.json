@@ -21,7 +21,7 @@
     "lang": "ko-KR",
     "name": "Meal Plan Offline Viewer",
     "short_name": "MPOV",
-    "start_url": "./plan.html",
+    "start_url": "./plan_daily.html",
     "description": "A PWA to display meal plans of the Republic of Korea Air Force 11th Fighter Wing in an offline environment.",
     "id": "mpov"
 }

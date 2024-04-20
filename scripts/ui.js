@@ -15,4 +15,12 @@ var rippleEffect = (function(){
             parent.appendChild(ripple)
         }
     })
-  })();
+})();
+
+function navigate(navigationSource) {
+    var offcanvas = document.getElementById("offcanvasSideBar");
+    var openedCanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+    openedCanvas.hide();
+
+    setTimeout(() => location.href = navigationSource, 100);
+}

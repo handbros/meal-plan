@@ -13,6 +13,7 @@ const FILES_TO_CACHE = [
     './about.html',
     './scripts/app.js',
     './scripts/install.js',
+    './scripts/ui.js',
     './styles/style.css'
 ];
 
