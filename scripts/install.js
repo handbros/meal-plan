@@ -21,12 +21,14 @@ function getEnvironment() {
 let deferredInstallPrompt = null;
 const installButton = document.getElementById('btn-install');
 const notInstallableNotice = document.getElementById('notice-not-installable');
+const uaLabel = document.getElementById('ua-label');
 
 if (TYPE != 'other') {
     installButton.addEventListener('click', installPWA);
     notInstallableNotice.style.display = 'none';
 } else {
     installButton.style.display = 'none';
+    uaLabel.innerHTML = UA;
 }
 
 // CODELAB: Add event listener for beforeinstallprompt event

@@ -21,8 +21,8 @@
 <body data-bs-theme="light">
     <!-- UI : NAVBAR -->
     <div class="centered_container">
-        <div class="d-block" style="text-align: center">
-            <div class="non-draggable d-flex align-items-center mb-0 text-decoration-none">
+        <div class="d-flex flex-column" >
+            <div class="non-draggable d-flex align-items-center ms-4 me-4 mb-0 text-decoration-none">
                 <img src="./assets/favicon.ico" class="bi me-2" width="64" height="64" >
                 <div class="d-block align-middle mb-1">
                     <p class="text-start text-body fs-3 m-0">MPOV</p>
@@ -30,7 +30,7 @@
                 </div>
             </div>
     
-            <button id="btn-install" class="btn btn-primary btn-lg mt-4">
+            <button id="btn-install" class="btn btn-primary btn-lg ms-4 me-4 mt-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-download mb-1 me-1" viewBox="0 0 16 16">
                     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
                     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
@@ -38,8 +38,11 @@
                 앱 설치하기
             </button>
 
-            <div id="notice-not-installable" class="text-wrap mt-4">
-                <p class="text text-body-tertiary fs-6 m-0">애플리케이션을 설치할 수 없습니다.</p>
+            <div id="notice-not-installable" class="non-draggable text-wrap ms-4 me-4 mt-4">
+                <p class="text text-body-tertiary fs-6 mb-0">현재 플랫폼에서는 애플리케이션을 설치할 수 없습니다.<br>지원 대상 플랫폼임에도 오류가 반복될 경우 관리자에게 문의해주십시오.</p>
+                <li class="text text-start text-body-tertiary mt-4 mb-0" style="font-size: 0.8em">Supported OS : Android, iOS</li>
+                <li class="text text-start text-body-tertiary mb-0" style="font-size: 0.8em">Supported Web Browser : Chrome, Safari, Samsung Internet</li>
+                <li class="text text-start text-body-tertiary mb-0" style="font-size: 0.8em">Current User Agent : <span id="ua-label">asdfsad</span></li>
             </div>
         </div>
     </div>
