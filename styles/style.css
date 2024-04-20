@@ -27,11 +27,41 @@ body {
 }
 
 .offcanvas{
-  width:250px !important;
+  width:260px !important;
 }
 
 .offcanvas_button {
   --bs-btn-padding-y: .75rem;
   --bs-btn-padding-x: 1.0rem;
   --bs-btn-font-size: 1.0rem;
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  animation-name: ripple;
+  animation-duration: 1s;
+  opacity: 0;
+  border-radius: 50%;
+}
+
+@keyframes ripple {
+  
+  0% {
+    opacity: .4;
+    transform: scale(0);
+    background: #000;
+  }
+  
+  100% {
+    opacity: 0;
+    transform: scale(100);
+    background: #000;
+  }
 }
