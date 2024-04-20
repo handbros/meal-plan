@@ -18,10 +18,19 @@
     <link rel="stylesheet" type="text/css" href="./styles/style.css">
 </head>
 
-<body data-bs-theme="light">
-    <!-- UI : NAVBAR -->
-    <div class="centered_container">
-        <div class="d-flex flex-column" >
+<body data-bs-theme="light" style="overflow: hidden;">
+    <!-- UI : LOADING -->
+    <div id="div-loading" class="centered_container">
+        <div class="d-flex flex-column" style="text-align: center;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+        </div>
+    </div>
+
+    <!-- UI : INSTALLATION -->
+    <div id="div-installation" class="centered_container">
+        <div class="d-flex flex-column" style="text-align: center;">
             <div class="non-draggable d-flex align-items-center ms-4 me-4 mb-0 text-decoration-none">
                 <img src="./assets/favicon.ico" class="bi me-2" width="64" height="64" >
                 <div class="d-block align-middle mb-1">
@@ -37,6 +46,19 @@
                 </svg>
                 앱 설치하기
             </button>
+        </div>
+    </div>
+
+    <!-- UI : NOT INSTALLABLE -->
+    <div id="div-not-installable" class="centered_container">
+        <div class="d-flex flex-column" >
+            <div class="non-draggable d-flex align-items-center ms-4 me-4 mb-0 text-decoration-none">
+                <img src="./assets/favicon.ico" class="bi me-2" width="64" height="64" >
+                <div class="d-block align-middle mb-1">
+                    <p class="text-start text-body fs-3 m-0">MPOV</p>
+                    <p class="text-start text-body fs-6 m-0">병사식당 식단표 오프라인 뷰어</p>
+                </div>
+            </div>
 
             <div id="notice-not-installable" class="non-draggable text-wrap ms-4 me-4 mt-4">
                 <p class="text text-body-tertiary fs-6 mb-0">현재 플랫폼에서는 애플리케이션을 설치할 수 없습니다.<br>지원 대상 플랫폼임에도 오류가 반복될 경우 관리자에게 문의해주십시오.</p>

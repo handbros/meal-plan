@@ -19,15 +19,19 @@ function getEnvironment() {
 }
 
 let deferredInstallPrompt = null;
+const divLoading = document.getElementById('div-loading');
+const divInstallation = document.getElementById('div-installation');
+const divNotInstallable = document.getElementById('div-not-installable');
 const installButton = document.getElementById('btn-install');
-const notInstallableNotice = document.getElementById('notice-not-installable');
 const uaLabel = document.getElementById('ua-label');
+
+setTimeout(() => divLoading.style.display = 'none', Math.floor(Math.random() * (1500 - 500)) + 500);
 
 if (TYPE != 'other') {
     installButton.addEventListener('click', installPWA);
-    notInstallableNotice.style.display = 'none';
+    divNotInstallable.style.display = 'none';
 } else {
-    installButton.style.display = 'none';
+    divInstallation.style.display = 'none';
     uaLabel.innerHTML = UA;
 }
 
@@ -43,7 +47,6 @@ window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
 function saveBeforeInstallPromptEvent(evt) {
     // CODELAB: Add code to save event & show the install button.
     deferredInstallPrompt = evt;
-    installButton.removeAttribute('hidden');
 }
 
 
