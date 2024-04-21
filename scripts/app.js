@@ -1,7 +1,12 @@
 window.addEventListener('load', () => {
     //requestWeeklyData("20240421", (data) => {console.log(data)});
+    //storageUsage().then((data) => console.log(data))
+    //storageQuota().then((data) => console.log(data))
 });
 
+// ==================================================
+// API
+// ==================================================
 const URL_API_TODAY = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/today_sql.php";
 const URL_API_WEEK = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php";
 
@@ -28,3 +33,25 @@ function requestWeeklyData(date, callback) {
     .then((response) => response.json())
     .then((data) => callback(data));
 }
+
+// ==================================================
+// Storage & Database
+// ==================================================
+async function storageQuota() {
+    if (navigator.storage && navigator.storage.estimate) { 
+        const estimate = await navigator.storage.estimate();
+        return estimate.quota;
+    } else {
+        return -1;
+    }
+}
+
+async function storageUsage() {
+    if (navigator.storage && navigator.storage.estimate) { 
+        const estimate = await navigator.storage.estimate();
+        return estimate.usage;
+    } else {
+        return -1;
+    }
+}
+

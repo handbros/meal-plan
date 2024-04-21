@@ -24,8 +24,8 @@ var rippleEffect = (function(){
 function findClassFromParent(parent, className) {           
     if (parent && !parent.className) {
         return findClassFromParent(parent.parentNode, className);
-    } else if(parent && parent.className){
-        if(!parent.classList.contains(className)){
+    } else if (parent && parent.className){
+        if (!parent.classList.contains(className)){
             return findClassFromParent(parent.parentNode, className);
         }else {
             return true;
