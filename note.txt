@@ -21,3 +21,38 @@ https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php?requestId=sear
 
 [특정일 메뉴 검색]
 https://puls.pulmuone.com/plurestaurant/src/sql/menu/today_sql.php?requestId=search_schMenu&requestUrl=%2Fplurestaurant%2Fsrc%2Fsql%2Fmenu%2Ftoday_sql.php&requestMode=1&requestParam=%7B%22srchOperCd%22%3A%22O000002%22%2C%22srchAssignCd%22%3A%22S000500%22%2C%22srchCurDay%22%3A%2220240421%22%7D
+
+[스케쥴 코드]
+010 : 조식
+020 : 중식
+030 : 석식
+040 : 야식
+050 : 기타
+
+[특정일 데이터 스키마]
+srchCurDay : 현재 연월일
+schTimeCd : 타겟 식당의 스케쥴 코드 목록
+yoil : 현재 요일
+closeGb : 식당 폐쇄 여부 ======> 0:영업중, 1:폐쇄
+data : 세부 데이터
+-> timeCd : 스케쥴 코드
+-> menuNm : 주메뉴명
+-> cal : 칼로리
+-> imgPath : 이미지 경로
+-> imgNm : 이미지 명
+-> bigo : 비고
+-> shopNm : 식당명
+-> chkTimeCd : 현재 시간대의 스케쥴 코드
+-> shopCd : 식당코드
+-> save_timeCd : ?
+-> soldOutGb : 매진 여부 ======> 0:판매중, 1:품절
+-> TakeGb : 테이크아웃 가능 여부 ======> 0:불가능, 1:가능
+-> MenuEngNm : 영문 주메뉴명
+-> s_imgNm : 썸네일 경로
+
+
+<썸네일 이미지>
+c_imgPath = "<img name='imgMenu' class='heightCls "+soldOutClass+"' alt='이미지' src='http://did2.drimhitech.com"+pParam['data'][i][3]+s_imgNm+"'>";
+
+<일반 대용량 이미지>
+c_imgPath = "<img name='imgMenu' class='heightCls "+soldOutClass+"' alt='이미지' src='"+pParam['data'][i][3]+pParam['data'][i][4]+"'>";
