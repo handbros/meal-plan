@@ -10,3 +10,14 @@ REQ Form : requestId=search_week, requestFormId=frmWeek  operCd=O000002, topAssi
 테스트 : https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php?requestId=search_week&requestMode=1&requestFormId=frmWeek&operCd=O000002&topAssignCd=S000500&menuDay=0
 
 LOCAL_FORM = frmWeek 또는 frmToday
+
+[해당 주차 검색]
+https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php?requestId=search_week&requestUrl=%2Fplurestaurant%2Fsrc%2Fsql%2Fmenu%2Fweek_sql.php&requestMode=1&requestParam=%7B%22topOperCd%22%3A%22O000002%22%2C%22topAssignCd%22%3A%22S000500%22%2C%22menuDay%22%3A1%7D
+↓
+https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php?requestId=search_week&requestUrl=/plurestaurant/src/sql/menu/week_sql.php&requestMode=1&requestParam={"topOperCd":"O000002","topAssignCd":"S000500","menuDay":0}
+-----> menuDay에 20240421 포맷으로 날짜 입력시 해당 날짜 메뉴 추출 가능.
+
+https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php?requestId=search_week&requestUrl=%2Fplurestaurant%2Fsrc%2Fsql%2Fmenu%2Fweek_sql.php&requestMode=1&requestParam=%7B%22topOperCd%22%3A%22O000002%22%2C%22topAssignCd%22%3A%22S000500%22%2C%22menuDay%22%3A%2220240423%22%7D
+
+[특정일 메뉴 검색]
+https://puls.pulmuone.com/plurestaurant/src/sql/menu/today_sql.php?requestId=search_schMenu&requestUrl=%2Fplurestaurant%2Fsrc%2Fsql%2Fmenu%2Ftoday_sql.php&requestMode=1&requestParam=%7B%22srchOperCd%22%3A%22O000002%22%2C%22srchAssignCd%22%3A%22S000500%22%2C%22srchCurDay%22%3A%2220240421%22%7D
