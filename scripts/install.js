@@ -1,41 +1,6 @@
 'use strict';
 
-// Check the current environment.
-const UA = window.navigator.userAgent || window.navigator.vendor || window.opera
-const TYPE = getEnvironment();
-
-function getEnvironment() {
-    var ua = navigator.userAgent.toLowerCase();
-
-    if (ua.indexOf('kakaotalk') > -1) {
-        return "kakaotalk";
-    } else if (ua.indexOf('android') > -1) {
-        return "android";
-    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) {
-        return "ios";
-    } else {
-        return "other";
-    }
-}
-
 let deferredInstallPrompt = null;
-const divLoading = document.getElementById('div-loading');
-const divInstallation = document.getElementById('div-installation');
-const divNotInstallable = document.getElementById('div-not-installable');
-const installButton = document.getElementById('btn-install');
-const uaLabel = document.getElementById('ua-label');
-
-setTimeout(() => divLoading.style.display = 'none', Math.floor(Math.random() * (1500 - 500)) + 500);
-
-if (TYPE != 'other') {
-    // INSTALLABLE
-    installButton.addEventListener('click', installPWA);
-    divNotInstallable.style.display = 'none';
-} else {
-    // NOT INSTALLABLE
-    divInstallation.style.display = 'none';
-    uaLabel.innerHTML = UA;
-}
 
 // CODELAB: Add event listener for beforeinstallprompt event
 window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
@@ -94,4 +59,40 @@ function onAfterAppInstalled(evt) {
     } else {
         window.open('about:blank','_self').self.close();
     }
+}
+
+// Check the current environment.
+function getEnvironment() {
+    var ua = navigator.userAgent.toLowerCase();
+
+    if (ua.indexOf('kakaotalk') > -1) {
+        return "kakaotalk";
+    } else if (ua.indexOf('android') > -1) {
+        return "android";
+    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1 || ua.indexOf('ipod') > -1) {
+        return "ios";
+    } else {
+        return "other";
+    }
+}
+
+let userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera
+let type = getEnvironment();
+
+let divLoading = document.getElementById('div-loading');
+let divInstallation = document.getElementById('div-installation');
+let divNotInstallable = document.getElementById('div-not-installable');
+let installButton = document.getElementById('btn-install');
+let uaLabel = document.getElementById('ua-label');
+
+setTimeout(() => divLoading.style.display = 'none', Math.floor(Math.random() * (1500 - 500)) + 500);
+
+if (type != 'other') {
+    // INSTALLABLE
+    installButton.addEventListener('click', installPWA);
+    divNotInstallable.style.display = 'none';
+} else {
+    // NOT INSTALLABLE
+    divInstallation.style.display = 'none';
+    uaLabel.innerHTML = userAgent;
 }

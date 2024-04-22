@@ -1,7 +1,14 @@
 window.addEventListener('load', () => {
-    //requestDailyData("20240421", (data) => {console.log(data)});
-    //storageUsage().then((data) => console.log(data))
-    //storageQuota().then((data) => console.log(data))
+    // Note: Add event listeners to detect network connection changes.
+    displayNetworkStatus(navigator.onLine);
+
+    window.addEventListener("online", () => {
+        displayNetworkStatus(true);
+    });
+        
+    window.addEventListener("offline", () => {
+        displayNetworkStatus(false);
+    });
 });
 
 // ==================================================
