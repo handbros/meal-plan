@@ -71,7 +71,8 @@ self.addEventListener('fetch', (evt) => {
         .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                    return cache.match('offline.html');
+                    // If the network is offline...
+                    return cache.match('plan_daily.html');
                 });
         })
     );

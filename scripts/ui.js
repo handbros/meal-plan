@@ -1,4 +1,16 @@
 window.addEventListener('load', () => {
+    // Note: Add event listeners to detect network connection changes.
+    displayNetworkStatus(navigator.onLine);
+
+    window.addEventListener("online", () => {
+        displayNetworkStatus(true);
+    });
+    
+    window.addEventListener("offline", () => {
+        displayNetworkStatus(false);
+    });
+
+    // Note: If the 'isAlertClosed' is true, do not open the alert.
     if (sessionStorage.getItem("isAlertClosed") != "true") {
         openAlert("danger", "<strong>공지사항</strong> 현재 체계 개발이 진행중입니다. 원활한 서비스 이용이 어려울 수 있습니다.", true);
     }
@@ -35,6 +47,15 @@ function findClassFromParent(parent, className) {
             return true;
         }
     }
+}
+
+function displayNetworkStatus(isOnline) {
+    let badgeOnline = `<span class="badge rounded-pill text-bg-success ms-1" style="font-size: 0.5em">ONLINE</span>`;
+    let badgeOffline = `<span class="badge rounded-pill text-bg-dark ms-1" style="font-size: 0.5em">OFFLINE</span>`;
+    let badgeNode = new DOMParser().parseFromString(isOnline ? badgeOnline : badgeOffline, "text/html").body.firstElementChild;
+    
+    let navbarHeader = document.getElementById("navbar-header");
+    navbarHeader.lastChild.after(badgeNode);
 }
 
 function openAlert(type, message, isDismissible = false) {
