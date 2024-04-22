@@ -14,9 +14,14 @@ const FILES_TO_CACHE = [
     './assets/favicon.ico',
     './scripts/app.js',
     './scripts/install.js',
-    './scripts/metadata.js',
     './scripts/settings.js',
     './scripts/ui.js',
+    './scripts/pages/about.js',
+    './scripts/pages/index.js',
+    './scripts/pages/plan_daily.js',
+    './scripts/pages/plan_weekly.js',
+    './scripts/pages/settings.js',
+    './scripts/pages/storage.js',
     './styles/style.css'
 ];
 

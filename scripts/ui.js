@@ -1,5 +1,3 @@
-const { setItem, getItem, removeItem, clear, length, key } = sessionStorage;
-
 var rippleEffect = (function(){
     var className, ripple;
     
@@ -59,12 +57,12 @@ function openAlert(type, message, isDismissible = false) {
 }
 
 function closeAlert() {
-    sessionStorage.setItem("isAlertClosed", true);
+    window.sessionStorage.setItem("MPOV_IS_ALERT_CLOSED", true);
 }
 
 window.addEventListener('load', () => {
-    // Note: If the 'isAlertClosed' is true, do not open the alert.
-    if (sessionStorage.getItem("isAlertClosed") != "true") {
+    // Note: If the 'is_alert_closed' is true, do not open the alert.
+    if (window.sessionStorage.getItem("MPOV_IS_ALERT_CLOSED") != "true") {
         openAlert("danger", "<strong>공지사항</strong> 현재 체계 개발이 진행중입니다. 원활한 서비스 이용이 어려울 수 있습니다.", true);
     }
 });
