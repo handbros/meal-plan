@@ -11,8 +11,11 @@ const FILES_TO_CACHE = [
     './storage.html',
     './settings.html',
     './about.html',
+    './assets/favicon.ico',
     './scripts/app.js',
     './scripts/install.js',
+    './scripts/metadata.js',
+    './scripts/settings.js',
     './scripts/ui.js',
     './styles/style.css'
 ];

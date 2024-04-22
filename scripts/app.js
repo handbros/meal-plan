@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    //requestWeeklyData("20240421", (data) => {console.log(data)});
+    //requestDailyData("20240421", (data) => {console.log(data)});
     //storageUsage().then((data) => console.log(data))
     //storageQuota().then((data) => console.log(data))
 });
@@ -54,4 +54,6 @@ async function storageUsage() {
         return -1;
     }
 }
+
+
 
