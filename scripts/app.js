@@ -1,15 +1,4 @@
-window.addEventListener('load', () => {
-    // Note: Add event listeners to detect network connection changes.
-    displayNetworkStatus(navigator.onLine);
-
-    window.addEventListener("online", () => {
-        displayNetworkStatus(true);
-    });
-        
-    window.addEventListener("offline", () => {
-        displayNetworkStatus(false);
-    });
-});
+let isOnline = false;
 
 // ==================================================
 // API
@@ -62,5 +51,18 @@ async function storageUsage() {
     }
 }
 
+window.addEventListener('load', () => {
+    // Note: Add event listeners to detect network connection changes.
+    isOnline = navigator.onLine;
+    displayNetworkStatus(isOnline);
 
-
+    window.addEventListener("online", () => {
+        isOnline = true;
+        displayNetworkStatus(true);
+    });
+        
+    window.addEventListener("offline", () => {
+        isOnline = false;
+        displayNetworkStatus(false);
+    });
+});
