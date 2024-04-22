@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>정보 :: MPOV</title>
+    <title>동기화 :: MPOV</title>
 
     <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="./manifest.json">
@@ -66,7 +66,7 @@
           </button>
 
           <span class="text text-body-secondary mt-3" style="font-size: 0.8em">데이터</span>
-          <button type="button" class="btn btn-light offcanvas_button bg-body text-start text-body mt-3" onclick="location.href='./sync.html'">
+          <button type="button" class="btn btn-outline-primary offcanvas_button bg-body text-start text-primary mt-3 active" onclick="location.href='#'">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise me-1 mb-1" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
               <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
@@ -87,7 +87,7 @@
             </svg>
             <span class="text" style="font-size: 0.9em">설정</span>
           </button>
-          <button type="button" class="btn btn-outline-primary offcanvas_button bg-body text-start text-primary mt-1 active" onclick="location.href='#'">
+          <button type="button" class="btn btn-light offcanvas_button bg-body text-start text-body mt-1" onclick="location.href='./about.html'">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle me-1 mb-1" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
               <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -100,31 +100,14 @@
 
     <div id="workarea" class="ps-5 pe-5 pt-4 pb-4">
       <!-- UI : HEADER -->
-      <h2 class="non-draggable text text-body fw-semibold">정보</h2>
-
-      <!-- UI : LOGOTYPE -->
-      <div class="non-draggable d-flex align-items-center mb-0 text-decoration-none mt-4">
-        <img src="./assets/favicon.ico" class="bi me-1" style="filter: grayscale(100%);" width="48" height="48" >
-        <div class="d-block align-middle mb-1">
-          <p class="text-start text-body-secondary font_outfit fw-semibold fs-4 lh-sm m-0">MPOV</p>
-          <p class="text-start text-body-secondary fw-semibold lh-sm m-0" style="font-size: 0.8em">병사식당 식단표 오프라인 뷰어</p>
-        </div>
-      </div>
-
-      <!-- UI : DETAILS -->
-      <div class="mt-3">
-        <p class="text-start text-wrap text-body-tertiary" style="font-size: 0.8em">버전 <span id="mpov-version"></span> | <span id="mpov-status"></span> | <span id="mpov-provider"></span></p>
-        <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">이 애플리케이션은 <a href="https://getbootstrap.com/">Bootstrap</a> 오픈 소스 프로젝트 및 기타 오픈 소스 소프트웨어를 기반으로 작동합니다.<br>본 애플리케이션의 모든 구성요소(제3자 오픈소스 소프트웨어 제외)는 <a href="https://opensource.org/license/mit">MIT 라이선스</a> 하에 자유 이용이 허락됩니다.</p>
-        <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">본 애플리케이션에서 사용되는 모든 원본(RAW) 데이터는 풀무원 API를 통해 제공받고 있습니다.</p>
-        <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">ⓒ 2024 handbros. All rights reserved.</p>
-      </div>
+      <h2 class="non-draggable text text-body fw-semibold">동기화</h2>
     </div>
 
     <!-- SCRIPTS -->
     <script src="./scripts/settings.js"></script>
     <script src="./scripts/ui.js"></script>
     <script src="./scripts/app.js"></script>
-    <script src="./scripts/pages/about.js"></script>
+    <script src="./scripts/pages/sync.js"></script>
     <script>
       // CODELAB: Register service worker.
       if ('serviceWorker' in navigator) {

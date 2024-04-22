@@ -8,6 +8,7 @@ const FILES_TO_CACHE = [
     '.',
     './plan_daily.html',
     './plan_weekly.html',
+    './sync.html',
     './storage.html',
     './settings.html',
     './about.html',
@@ -22,6 +23,7 @@ const FILES_TO_CACHE = [
     './scripts/pages/plan_weekly.js',
     './scripts/pages/settings.js',
     './scripts/pages/storage.js',
+    './scripts/pages/sync.js',
     './styles/style.css'
 ];
 
