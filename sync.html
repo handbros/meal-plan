@@ -102,15 +102,21 @@
       <!-- UI : HEADER -->
       <h2 class="non-draggable text text-body fw-semibold">동기화</h2>
 
-      <div class="flex-fill card card_container text-bg-light border-light mt-4 p-0">
-        <div class="card-header bg-body p-3 fw-semibold">동기화 상태</div>
-        <div class="card-body">
-          <h5 class="card-title">Light card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <!-- UI : TASK CONTROLLER -->
+      <div class="d-flex border card_container mt-4 p-3 justify-content-between">
+        <div class="d-flex align-items-center">
+          <div class="spinner-grow spinner-grow-sm text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="ms-2">
+            <div class="card-header text-body-secondary fw-medium lh-sm">마지막 동기화 일시</div>
+            <div class="card-header text-body-tertiary fw-light lh-sm mt-1" style="font-size: 0.8em">2024.04.23. 14:59</div>
+          </div>
         </div>
-        <div class="card-footer bg-body p-3">
-          2 days ago
-        </div>
+        <button type="button" class="btn btn-primary fw-semibold" style="--bs-btn-font-size: .9rem;">동기화</button>
+      </div>
+      <div class="d-flex border card_container mt-2 p-3">
+
       </div>
     </div>
 
