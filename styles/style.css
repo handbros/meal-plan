@@ -1,4 +1,6 @@
-body {
+html, body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   font-family: "Noto Sans KR", sans-serif;
 }
@@ -22,6 +24,16 @@ body {
   align-items : center;
 }
 
+.workarea_container {
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+
+.card_container {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 .navbar_divider {
   border-bottom: 1px solid rgb(240, 240, 240);
 }
@@ -40,11 +52,6 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-}
-
-.card_container {
-  border-radius: 12px;
-  overflow: hidden;
 }
 
 .ripple {
