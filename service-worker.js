@@ -6,6 +6,8 @@ const DATA_CACHE_NAME = 'data-cache-v5';
 // CODELAB: Add list of files to cache here.
 const FILES_TO_CACHE = [
     '.',
+    './index.html',
+    './error.html',
     './plan_daily.html',
     './plan_weekly.html',
     './sync.html',
@@ -14,10 +16,9 @@ const FILES_TO_CACHE = [
     './about.html',
     './assets/favicon.ico',
     './scripts/app.js',
-    './scripts/install.js',
-    './scripts/settings.js',
     './scripts/ui.js',
     './scripts/pages/about.js',
+    './scripts/pages/error.js',
     './scripts/pages/index.js',
     './scripts/pages/plan_daily.js',
     './scripts/pages/plan_weekly.js',

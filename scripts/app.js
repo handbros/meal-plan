@@ -1,6 +1,28 @@
 let isOnline = false;
 
 // ==================================================
+// APPS
+// ==================================================
+const isDevMode = (window.location.hostname.toLowerCase() != "handbros.github.io");
+
+const isInStandaloneMode = () =>
+    (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+
+function throwError(code, message) {
+    var url = "./error.html";
+    url += "?code=" + encodeURI(code);
+    url += "&message=" + encodeURI(message);
+    location.href = url;
+}
+
+// ==================================================
+// SETTINGS
+// ==================================================
+let settings = {
+    "theme": "light"
+};
+
+// ==================================================
 // API
 // ==================================================
 const URL_API_TODAY = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/today_sql.php";
@@ -52,6 +74,18 @@ async function storageUsage() {
 }
 
 window.addEventListener('load', () => {
+    if (!isDevMode && !isInStandaloneMode) {
+        throwError("ERR_NOT_PWA", "애플리케이션 설치 상태에서만 사용 가능한 기능입니다.");
+        return;
+    }
+
+    // Note: Get settings.
+    let settingsJson = window.localStorage.getItem("MPOV_SETTINGS");
+
+    if (settingsJson != null) {
+        settings = JSON.parse(settingsJson);
+    }
+
     // Note: Add event listeners to detect network connection changes.
     isOnline = navigator.onLine;
     displayNetworkStatus(isOnline);
@@ -65,4 +99,11 @@ window.addEventListener('load', () => {
         isOnline = false;
         displayNetworkStatus(false);
     });
+});
+
+
+window.addEventListener('pagehide', () => {
+    // Note: Save settings.
+    let settingsJson = JSON.stringify(settings);
+    window.localStorage.setItem("MPOV_SETTINGS", settingsJson);
 });

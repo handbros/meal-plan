@@ -23,7 +23,7 @@ function findClassFromParent(parent, className) {
     } else if (parent && parent.className){
         if (!parent.classList.contains(className)){
             return findClassFromParent(parent.parentNode, className);
-        }else {
+        } else {
             return true;
         }
     }
@@ -31,7 +31,7 @@ function findClassFromParent(parent, className) {
 
 function displayNetworkStatus(isOnline) {
     let oldElement = document.getElementById("netstatus-badge");
-    if (oldElement != null) {
+    if (oldElement) {
         oldElement.remove()
     }
 
@@ -40,12 +40,14 @@ function displayNetworkStatus(isOnline) {
     let badgeNode = new DOMParser().parseFromString(isOnline ? badgeOnline : badgeOffline, "text/html").body.firstElementChild;
 
     let navbarHeader = document.getElementById("navbar-header");
-    navbarHeader.lastChild.after(badgeNode);
+    if (navbarHeader) {
+        navbarHeader.lastChild.after(badgeNode);
+    }
 }
 
 function openAlert(type, message, isDismissible = false) {
     let oldElement = document.getElementById("alert");
-    if (oldElement != null) {
+    if (oldElement) {
         oldElement.remove()
     }
 
@@ -53,7 +55,9 @@ function openAlert(type, message, isDismissible = false) {
     let newElementNode = new DOMParser().parseFromString(newElement, "text/html").body.firstElementChild;
 
     let workArea = document.getElementById("workarea");
-    workArea.insertBefore(newElementNode, workArea.firstChild);
+    if (workArea) {
+        workArea.insertBefore(newElementNode, workArea.firstChild);
+    }
 }
 
 function closeAlert() {
