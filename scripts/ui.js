@@ -1,34 +1,3 @@
-var rippleEffect = (function(){
-    var className, ripple;
-    
-    className = 'btn';
-    ripple = document.createElement("div")
-    ripple.classList.add('ripple')
-    
-    document.addEventListener('mousedown', function(e) {
-        var parent = e.target.parentElement
-        if (findClassFromParent(e.target.parentNode, className) == true ? true : false) {
-            ripple.setAttribute("style", "top: " + e.target.parentNode.offsetY + "px; left: " + e.target.parentNode.offsetX + "px");
-            e.target.appendChild(ripple)
-        } else if (e.target.classList.contains(className)) {
-            ripple.setAttribute("style", "top: " + e.offsetY + "px; left: " + e.offsetX + "px");
-            e.target.appendChild(ripple)
-        }
-    })
-})();
-
-function findClassFromParent(parent, className) {           
-    if (parent && !parent.className) {
-        return findClassFromParent(parent.parentNode, className);
-    } else if (parent && parent.className){
-        if (!parent.classList.contains(className)){
-            return findClassFromParent(parent.parentNode, className);
-        } else {
-            return true;
-        }
-    }
-}
-
 function displayNetworkStatus(isOnline) {
     let oldElement = document.getElementById("netstatus-badge");
     if (oldElement) {
@@ -64,7 +33,68 @@ function closeAlert() {
     window.sessionStorage.setItem("MPOV_IS_ALERT_CLOSED", true);
 }
 
+function findClassFromParent(parent, className) {           
+    if (parent && !parent.className) {
+        return findClassFromParent(parent.parentNode, className);
+    } else if (parent && parent.className){
+        if (!parent.classList.contains(className)){
+            return findClassFromParent(parent.parentNode, className);
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+
+function rippleAnimationHandler(e) {
+    // Remove the ripple animation(BEFORE).
+    var oldElement = document.getElementById("ripple-animation");
+    if (oldElement) {
+        oldElement.remove();
+    }
+
+    // Show the ripple animation.
+    var ripple = document.createElement("div");
+    ripple.id = "ripple-animation"
+    ripple.classList.add("ripple");
+    ripple.setAttribute("style", "top: " + e.offsetY + "px; left: " + e.offsetX + "px");
+    button.appendChild(ripple);
+    console.log(e.target);
+    console.log(e.offsetX + ", " + e.offsetY);
+
+    // Remove the ripple animation(AFTER).
+    setTimeout(() => ripple.remove(), 1000);
+    clearTimeout();
+}
+
 window.addEventListener('load', () => {
+    // Note: Add ripple animation handlers.
+    var buttons = document.querySelectorAll(".btn");
+    buttons.forEach((button) => {
+        button.addEventListener("mousedown", (e) => {
+            // Remove the ripple animation(BEFORE).
+            var oldElement = document.getElementById("ripple-animation");
+            if (oldElement) {
+                oldElement.remove();
+            }
+
+            // Show the ripple animation.
+            var ripple = document.createElement("div");
+            ripple.id = "ripple-animation"
+            ripple.classList.add("ripple");
+
+            var xpos = e.offsetX - (button.getBoundingClientRect().left - e.target.getBoundingClientRect().left);
+            var ypos = e.offsetY - (button.getBoundingClientRect().top - e.target.getBoundingClientRect().top);
+            ripple.setAttribute("style", "top: " + ypos + "px; left: " + xpos + "px");
+            button.appendChild(ripple);
+
+            // Remove the ripple animation(AFTER).
+            setTimeout(() => {if (ripple) { ripple.remove()}}, 1000);
+            clearTimeout();
+        });
+    });
+
     // Note: If the 'is_alert_closed' is true, do not open the alert.
     if (window.sessionStorage.getItem("MPOV_IS_ALERT_CLOSED") != "true") {
         openAlert("danger", "<strong>공지사항</strong> 현재 체계 개발이 진행중입니다. 원활한 서비스 이용이 어려울 수 있습니다.", true);
