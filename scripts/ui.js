@@ -1,19 +1,6 @@
-function displayNetworkStatus(isOnline) {
-    let oldElement = document.getElementById("netstatus-badge");
-    if (oldElement) {
-        oldElement.remove()
-    }
-
-    let badgeOnline = `<span id="netstatus-badge" class="badge rounded-pill text-bg-success ms-1" style="font-size: 0.5em">ONLINE</span>`;
-    let badgeOffline = `<span id="netstatus-badge" class="badge rounded-pill text-bg-dark ms-1" style="font-size: 0.5em">OFFLINE</span>`;
-    let badgeNode = new DOMParser().parseFromString(isOnline ? badgeOnline : badgeOffline, "text/html").body.firstElementChild;
-
-    let navbarHeader = document.getElementById("navbar-header");
-    if (navbarHeader) {
-        navbarHeader.lastChild.after(badgeNode);
-    }
-}
-
+// ==================================================
+// ALERT
+// ==================================================
 function openAlert(type, message, isDismissible = false) {
     let oldElement = document.getElementById("alert");
     if (oldElement) {
@@ -33,21 +20,35 @@ function closeAlert() {
     window.sessionStorage.setItem("MPOV_IS_ALERT_CLOSED", true);
 }
 
-function findClassFromParent(parent, className) {           
-    if (parent && !parent.className) {
-        return findClassFromParent(parent.parentNode, className);
-    } else if (parent && parent.className){
-        if (!parent.classList.contains(className)){
-            return findClassFromParent(parent.parentNode, className);
-        } else {
-            return true;
-        }
-    } else {
-        return false;
+// ==================================================
+// STATUS
+// ==================================================
+function displayNetworkStatus(isOnline) {
+    let oldElement = document.getElementById("netstatus-badge");
+    if (oldElement) {
+        oldElement.remove()
+    }
+
+    let badgeOnline = `<span id="netstatus-badge" class="badge rounded-pill text-bg-success ms-1" style="font-size: 0.5em">ONLINE</span>`;
+    let badgeOffline = `<span id="netstatus-badge" class="badge rounded-pill text-bg-dark ms-1" style="font-size: 0.5em">OFFLINE</span>`;
+    let badgeNode = new DOMParser().parseFromString(isOnline ? badgeOnline : badgeOffline, "text/html").body.firstElementChild;
+
+    let navbarHeader = document.getElementById("navbar-header");
+    if (navbarHeader) {
+        navbarHeader.lastChild.after(badgeNode);
     }
 }
 
+// ==================================================
+// ANIMATIONS
+// ==================================================
 function rippleAnimationHandler(e) {
+    // Find a button(parent).
+    var button = e.target.closest(".btn");
+    if (!button) {
+        return;
+    }
+
     // Remove the ripple animation(BEFORE).
     var oldElement = document.getElementById("ripple-animation");
     if (oldElement) {
@@ -58,42 +59,20 @@ function rippleAnimationHandler(e) {
     var ripple = document.createElement("div");
     ripple.id = "ripple-animation"
     ripple.classList.add("ripple");
-    ripple.setAttribute("style", "top: " + e.offsetY + "px; left: " + e.offsetX + "px");
+
+    var xpos = e.offsetX - (button.getBoundingClientRect().left - e.target.getBoundingClientRect().left);
+    var ypos = e.offsetY - (button.getBoundingClientRect().top - e.target.getBoundingClientRect().top);
+    ripple.setAttribute("style", "top: " + ypos + "px; left: " + xpos + "px");
     button.appendChild(ripple);
-    console.log(e.target);
-    console.log(e.offsetX + ", " + e.offsetY);
 
     // Remove the ripple animation(AFTER).
-    setTimeout(() => ripple.remove(), 1000);
+    setTimeout(() => {if (ripple) { ripple.remove()}}, 1000);
     clearTimeout();
 }
 
 window.addEventListener('load', () => {
-    // Note: Add ripple animation handlers.
-    var buttons = document.querySelectorAll(".btn");
-    buttons.forEach((button) => {
-        button.addEventListener("mousedown", (e) => {
-            // Remove the ripple animation(BEFORE).
-            var oldElement = document.getElementById("ripple-animation");
-            if (oldElement) {
-                oldElement.remove();
-            }
-
-            // Show the ripple animation.
-            var ripple = document.createElement("div");
-            ripple.id = "ripple-animation"
-            ripple.classList.add("ripple");
-
-            var xpos = e.offsetX - (button.getBoundingClientRect().left - e.target.getBoundingClientRect().left);
-            var ypos = e.offsetY - (button.getBoundingClientRect().top - e.target.getBoundingClientRect().top);
-            ripple.setAttribute("style", "top: " + ypos + "px; left: " + xpos + "px");
-            button.appendChild(ripple);
-
-            // Remove the ripple animation(AFTER).
-            setTimeout(() => {if (ripple) { ripple.remove()}}, 1000);
-            clearTimeout();
-        });
-    });
+    // Note: Add ripple animation handler.
+    document.addEventListener("mousedown", rippleAnimationHandler);
 
     // Note: If the 'is_alert_closed' is true, do not open the alert.
     if (window.sessionStorage.getItem("MPOV_IS_ALERT_CLOSED") != "true") {
