@@ -102,21 +102,25 @@
       <!-- UI : HEADER -->
       <h2 class="non-draggable text text-body fw-semibold">정보</h2>
 
-      <!-- UI : LOGOTYPE -->
-      <div class="non-draggable d-flex align-items-center mb-0 text-decoration-none mt-4">
-        <img src="./assets/favicon.ico" class="bi me-1" style="filter: grayscale(100%);" width="48" height="48" >
-        <div class="d-block align-middle mb-1">
-          <p class="text-start text-body-secondary font_outfit fw-semibold fs-4 lh-sm m-0">MPOV</p>
-          <p class="text-start text-body-secondary fw-semibold lh-sm m-0" style="font-size: 0.8em">병사식당 식단표 오프라인 뷰어</p>
+      <div class="d-flex flex-column border card_container bg-body mt-3">
+        <!-- UI : LOGOTYPE -->
+        <div class="non-draggable d-flex align-items-center mb-0 text-decoration-none p-3">
+          <img src="./assets/favicon.ico" class="bi me-1" style="filter: grayscale(100%);" width="48" height="48" >
+          <div class="d-block align-middle mb-1">
+            <p class="text-start text-body-secondary font_outfit fw-semibold fs-4 lh-sm m-0">MPOV</p>
+            <p class="text-start text-body-secondary fw-semibold lh-sm m-0" style="font-size: 0.8em">병사식당 식단표 오프라인 뷰어</p>
+          </div>
         </div>
-      </div>
+  
+        <p class="text-start text-wrap text-body-tertiary fw-medium mx-3 mb-0" style="font-size: 0.8em">버전 <span id="mpov-version"></span> | <span id="mpov-status"></span> | <span id="mpov-provider"></span></p>
+        <hr class="border-secondary">
 
-      <!-- UI : DETAILS -->
-      <div class="mt-3">
-        <p class="text-start text-wrap text-body-tertiary" style="font-size: 0.8em">버전 <span id="mpov-version"></span> | <span id="mpov-status"></span> | <span id="mpov-provider"></span></p>
-        <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">이 애플리케이션은 <a href="https://getbootstrap.com/">Bootstrap</a> 오픈 소스 프로젝트 및 기타 오픈 소스 소프트웨어를 기반으로 작동합니다.<br>본 애플리케이션의 모든 구성요소(제3자 오픈소스 소프트웨어 제외)는 <a href="https://opensource.org/license/mit">MIT 라이선스</a> 하에 자유 이용이 허락됩니다.</p>
-        <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">본 애플리케이션에서 사용되는 모든 원본(RAW) 데이터는 풀무원 API를 통해 제공받고 있습니다.</p>
-        <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">ⓒ 2024 handbros. All rights reserved.</p>
+        <!-- UI : DETAILS -->
+        <div class="mx-3">
+          <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">이 애플리케이션은 <a href="https://getbootstrap.com/">Bootstrap</a> 오픈 소스 프로젝트 및 기타 오픈 소스 소프트웨어를 기반으로 작동합니다.<br>본 애플리케이션의 모든 구성요소(제3자 오픈소스 소프트웨어 제외)는 <a href="https://opensource.org/license/mit">MIT 라이선스</a> 하에 자유 이용이 허락됩니다.</p>
+          <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">본 애플리케이션에서 사용되는 모든 원본(RAW) 데이터는 풀무원 API를 통해 제공받고 있습니다.</p>
+          <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">ⓒ 2024 handbros. All rights reserved.</p>
+        </div>
       </div>
     </div>
 
