@@ -115,11 +115,76 @@
         <p class="text-start text-wrap text-body-tertiary fw-medium mx-3 mb-0" style="font-size: 0.8em">버전 <span id="mpov-version"></span> | <span id="mpov-status"></span> | <span id="mpov-provider"></span></p>
         <hr class="border-secondary">
 
-        <!-- UI : DETAILS -->
+        <!-- UI : NOTICE -->
         <div class="mx-3">
           <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">이 애플리케이션은 <a href="https://getbootstrap.com/">Bootstrap</a> 오픈 소스 프로젝트 및 기타 오픈 소스 소프트웨어를 기반으로 작동합니다.<br>본 애플리케이션의 모든 구성요소(제3자 오픈소스 소프트웨어 제외)는 <a href="https://opensource.org/license/mit">MIT 라이선스</a> 하에 자유 이용이 허락됩니다.</p>
           <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">본 애플리케이션에서 사용되는 모든 원본(RAW) 데이터는 풀무원 API를 통해 제공받고 있습니다.</p>
           <p class="text-start text-wrap text-body-tertiary lh-sm" style="font-size: 0.8em">ⓒ 2024 handbros. All rights reserved.</p>
+        </div>
+      </div>
+
+      <!-- UI : BUTTONS -->
+      <a class="btn border bg-body text-body-secondary d-flex justify-content-between align-items-center mt-2 p-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <label class="fw-regular ps-1" style="font-size: 0.9em">오픈소스 라이선스</label>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+        </svg>
+      </a>
+
+      <!-- UI : MODAL for OSS -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="non-draggable modal-title fs-6 fw-medium" id="exampleModalLabel">오픈소스 라이선스</h1>
+              <button type="button" class="btn-close" style="transform: scale(75%);" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5>MPOV License</h5>
+              <div class="text-body-secondary fw-light ms-3" style="font-size: 0.9em">
+                <li>Do not translate or localize.</li>
+                <li>MPOV Contributors reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.</li>
+              </div>
+              <hr>
+
+              <p class="text-body-tertiary text-wrap" style="font-size: 0.8em">
+                MIT License<br>
+                <br>
+                Copyright (c) 2024 MPOV Contributors<br>
+                <br>
+                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:<br>
+                <br>
+                The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.<br>
+                <br>
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+              </p>
+
+              <hr>
+
+              <h5>Third-party Software Licenses</h5>
+              <div class="text-body-secondary fw-light ms-3" style="font-size: 0.9em">
+                <li>Do not translate or localize.</li>
+                <li>This project incorporates components from the projects listed below.</li>
+                <li>The original copyright notices and the licenses under which MPOV received such components are set forth below.</li>
+                <li>MPOV Contributors reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.</li>
+              </div>
+              <hr>
+              <table class="table">
+                <tr>
+                  <th class="text-body-primary fw-medium" style="font-size: 0.9em">NAME</th>
+                  <th class="text-body-primary fw-medium" style="font-size: 0.9em">VERSION</th>
+                  <th class="text-body-primary fw-medium" style="font-size: 0.9em">LICENSE</th>
+                  <th class="text-body-primary fw-medium" style="font-size: 0.9em">URL</th>
+                </tr>
+                <tr>
+                  <td class="text-body-secondary fw-regular" style="font-size: 0.8em">Bootstrap</td>
+                  <td class="text-body-secondary fw-regular" style="font-size: 0.8em">5.3.3</td>
+                  <td class="text-body-secondary fw-regular" style="font-size: 0.8em">MIT</td>
+                  <td class="text-body-secondary fw-regular" style="font-size: 0.8em"><a href="https://getbootstrap.com/">https://getbootstrap.com/</a></td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
