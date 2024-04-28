@@ -70,6 +70,9 @@ function rippleAnimationHandler(e) {
     clearTimeout();
 }
 
+// ==================================================
+// EVENT LISTENERS
+// ==================================================
 window.addEventListener('load', () => {
     // Note: Add ripple animation handler.
     document.addEventListener("mousedown", rippleAnimationHandler);

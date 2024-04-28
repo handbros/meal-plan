@@ -1,4 +1,10 @@
-let isOnline = false;
+// ==================================================
+// TEST
+// ==================================================
+function testIndexedDB() {
+    return !window.indexedDB ? false : true;
+}
+
 
 // ==================================================
 // APPS
@@ -7,6 +13,8 @@ const isDevMode = (window.location.hostname.toLowerCase() != "handbros.github.io
 
 const isInStandaloneMode = () =>
     (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+
+let isOnline = false;
 
 function throwError(code, message) {
     var url = "./error.html";
@@ -21,6 +29,19 @@ function throwError(code, message) {
 let settings = {
     "theme": "light"
 };
+
+function readSettings() {
+    let settingsJson = window.localStorage.getItem("MPOV_SETTINGS");
+
+    if (settingsJson != null) {
+        settings = JSON.parse(settingsJson);
+    }
+}
+
+function writeSettings() {
+    let settingsJson = JSON.stringify(settings);
+    window.localStorage.setItem("MPOV_SETTINGS", settingsJson);
+}
 
 // ==================================================
 // API
@@ -73,18 +94,92 @@ async function storageUsage() {
     }
 }
 
+// From : https://stackoverflow.com/questions/15861630/how-can-i-remove-a-whole-indexeddb-database-from-javascript
+
+var IndexedDB = {
+    name: "MPOV",
+    version: 1,
+    instance: {},
+    storenames: {
+        data: "MPOV_DATA",
+        image: "MPOV_IMAGE",
+        review: "MPOV_REVIEW"
+    },
+    defaultErrorHandler: function (e) {
+        console.error("An error has occurred.", e);
+    },
+    setDefaultErrorHandler: function (request) {
+        if ("onerror" in request) {
+            request.onerror = db.defaultErrorHandler;
+        }
+        if ("onblocked" in request) {
+            request.onblocked = db.defaultErrorHandler;
+        }
+    }
+};
+
+var date = new Date();
+var DataRecord = {
+    date: date,
+    json: ''
+};
+
+var ImageRecord = {
+    id: 0,
+    data: '' // BLOB
+};
+
+var ReviewRecord = {
+    name: '',
+    score: 0,
+    comment: ''
+};
+
+var Database = {
+
+};
+
+function createDatabase(callback) {
+    let database;
+    const request = window.indexedDB.open('MPOV');
+
+    request.onupgradeneeded = (e) => {
+        database = e.target.result;
+        database.createObjectStore("MPOV_MEALPLAN", {keyPath: "id"});
+        database.createObjectStore("MPOV_THUMBNAIL", {keyPath: "id"});
+        request.onerror = (e) => console.error("Failed to create a database.");
+        request.onsuccess = (e) => database = request.result;
+    };
+}
+
+function removeDatabase(callback) {
+    const request = window.indexedDB.deleteDatabase('MPOV');
+    request.onerror = (e) => {
+        console.error("Failed to remove the database.", e);
+        callback(e);
+    }
+
+    request.onblocked = (e) => {
+        console.error("Failed to remove the database due to the operation being blocked", e);
+        callback(e);
+    }
+
+    request.onsuccess = (e) => {
+        console.log("Removed the database successfully.");
+        callback(e);
+    }
+}
+
+// ==================================================
+// EVENT LISTENERS
+// ==================================================
 window.addEventListener('load', () => {
     if (!isDevMode && !isInStandaloneMode) {
         throwError("ERR_NOT_PWA", "애플리케이션 설치 상태에서만 사용 가능한 기능입니다.");
         return;
     }
 
-    // Note: Get settings.
-    let settingsJson = window.localStorage.getItem("MPOV_SETTINGS");
-
-    if (settingsJson != null) {
-        settings = JSON.parse(settingsJson);
-    }
+    readSettings();
 
     // Note: Add event listeners to detect network connection changes.
     isOnline = navigator.onLine;
@@ -103,7 +198,5 @@ window.addEventListener('load', () => {
 
 
 window.addEventListener('pagehide', () => {
-    // Note: Save settings.
-    let settingsJson = JSON.stringify(settings);
-    window.localStorage.setItem("MPOV_SETTINGS", settingsJson);
+    writeSettings();
 });
