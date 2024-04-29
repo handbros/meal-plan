@@ -90,47 +90,64 @@ var storage = {
 
 // From : https://stackoverflow.com/questions/15861630/how-can-i-remove-a-whole-indexeddb-database-from-javascript
 
-var IndexedDB = {
+var date = new Date();
+
+var imageRecord = {
+    id: 0,
+    data: '' // BLOB
+};
+
+var planRecord = {
+    date: date,
+    json: ''
+};
+
+var reviewRecord = {
+    name: '',
+    score: 0,
+    comment: ''
+};
+
+var database = {
     name: "MPOV",
     version: 1,
     instance: {},
     storenames: {
-        data: "MPOV_DATA",
-        image: "MPOV_IMAGE",
-        review: "MPOV_REVIEW"
+        blob: "MPOV_BLOB",
+        plan: "MPOV_PLAN",
+        log: "MPOV_LOG"
     },
-    defaultErrorHandler: function (e) {
+    blob: {
+        create: () => {},
+        read: () => {},
+        update: () => {},
+        delete: () => {}
+    },
+    plan: {
+        create: () => {},
+        read: () => {},
+        update: () => {},
+        delete: () => {}
+    },
+    log: {
+        create: () => {},
+        read: () => {},
+        update: () => {},
+        delete: () => {}
+    },
+    create: () => {},
+    delete: () => {},
+    defaultErrorHandler: (e) => {
         console.error("An error has occurred.", e);
     },
-    setDefaultErrorHandler: function (request) {
+    setDefaultErrorHandler: (request) => {
         if ("onerror" in request) {
             request.onerror = db.defaultErrorHandler;
         }
         if ("onblocked" in request) {
             request.onblocked = db.defaultErrorHandler;
         }
-    }
-};
-
-var date = new Date();
-var DataRecord = {
-    date: date,
-    json: ''
-};
-
-var ImageRecord = {
-    id: 0,
-    data: '' // BLOB
-};
-
-var ReviewRecord = {
-    name: '',
-    score: 0,
-    comment: ''
-};
-
-var Database = {
-
+    },
 };
 
 function createDatabase(callback) {
