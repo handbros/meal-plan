@@ -176,16 +176,16 @@ window.addEventListener('load', () => {
     settings.read();
 
     // Note: Add event listeners to detect network connection changes.
-    displayNetworkStatus(app.isOnline);
+    ui.badge.networkStatus(app.isOnline);
 
     window.addEventListener("online", () => {
         app.isOnline = true;
-        displayNetworkStatus(true);
+        ui.badge.networkStatus(true);
     });
         
     window.addEventListener("offline", () => {
         app.isOnline = false;
-        displayNetworkStatus(false);
+        ui.badge.networkStatus(false);
     });
 });
 
