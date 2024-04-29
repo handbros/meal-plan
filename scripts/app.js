@@ -1,97 +1,91 @@
 // ==================================================
 // TEST
 // ==================================================
-function testIndexedDB() {
-    return !window.indexedDB ? false : true;
-}
-
+var test = {
+    localStorage: (!storage.localStorage ? false : true),
+    sessionStorage: (!window.sessiontorage ? false : true),
+    indexedDB: (!window.indexedDB ? false : true)
+};
 
 // ==================================================
-// APPS
+// APP
 // ==================================================
-const isDevMode = (window.location.hostname.toLowerCase() != "handbros.github.io");
-
-const isInStandaloneMode = () =>
-    (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
-
-let isOnline = false;
-
-function throwError(code, message) {
-    var url = "./error.html";
-    url += "?code=" + encodeURI(code);
-    url += "&message=" + encodeURI(message);
-    location.href = url;
+var app = {
+    isOnline: (navigator.onLine),
+    isDevMode: (window.location.hostname.toLowerCase() != "handbros.github.io"),
+    isStandaloneMode: (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://'),
+    error: (code, message) => {
+        var url = "./error.html";
+        url += "?code=" + encodeURI(code);
+        url += "&message=" + encodeURI(message);
+        location.href = url;
+    }
 }
 
 // ==================================================
 // SETTINGS
 // ==================================================
-let settings = {
-    "theme": "light"
-};
+var settings = {
+    instance: {},
+    read: () => {
+        let settingsJson = storage.localStorage.getItem("MPOV_SETTINGS");
 
-function readSettings() {
-    let settingsJson = window.localStorage.getItem("MPOV_SETTINGS");
-
-    if (settingsJson != null) {
-        settings = JSON.parse(settingsJson);
+        if (settingsJson != null) {
+            settings.instance = JSON.parse(settingsJson);
+        }
+    },
+    write: () => {
+        let settingsJson = JSON.stringify(settings.instance);
+        storage.localStorage.setItem("MPOV_SETTINGS", settingsJson);
     }
-}
-
-function writeSettings() {
-    let settingsJson = JSON.stringify(settings);
-    window.localStorage.setItem("MPOV_SETTINGS", settingsJson);
-}
+};
 
 // ==================================================
 // API
 // ==================================================
-const URL_API_TODAY = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/today_sql.php";
-const URL_API_WEEK = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php";
+var api = {
+    request: (date, callback) => {
+        const URL_API_TODAY = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/today_sql.php";
+        // const URL_API_WEEK = "https://puls.pulmuone.com/plurestaurant/src/sql/menu/week_sql.php";
+        // To use Week API, you should change such parameters: requestId = search_week, srchOperCd -> topOperCd, srchAssignCd -> topAssignCd, srchCurDay -> menuDay.
 
-function requestDailyData(date, callback) {
-    var url = new URL(URL_API_TODAY);
-    url.searchParams.append("requestId", "search_schMenu");
-    url.searchParams.append("requestUrl", url.pathname);
-    url.searchParams.append("requestMode", 1); // Note: 1-AJAX Mode, 2-Submit Mode, 3-Debug Mode
-    url.searchParams.append("requestParam", JSON.stringify({"srchOperCd": "O000002", "srchAssignCd": "S000500", "srchCurDay": date})); // Note: If the date is 0, it is changed to today.
+        var url = new URL(URL_API_TODAY);
+        url.searchParams.append("requestId", "search_schMenu");
+        url.searchParams.append("requestUrl", url.pathname);
+        url.searchParams.append("requestMode", 1); // Note: 1-AJAX Mode, 2-Submit Mode, 3-Debug Mode
+        url.searchParams.append("requestParam", JSON.stringify({"srchOperCd": "O000002", "srchAssignCd": "S000500", "srchCurDay": date})); // Note: If the date is 0, it is changed to today.
+    
+        fetch(url.toString())
+        .then((response) => response.json())
+        .then((data) => callback(data));
+    },
+    test: () => {
 
-    fetch(url.toString())
-    .then((response) => response.json())
-    .then((data) => callback(data));
-}
-
-function requestWeeklyData(date, callback) {
-    var url = new URL(URL_API_WEEK);
-    url.searchParams.append("requestId", "search_week");
-    url.searchParams.append("requestUrl", url.pathname);
-    url.searchParams.append("requestMode", 1); // Note: 1-AJAX Mode, 2-Submit Mode, 3-Debug Mode
-    url.searchParams.append("requestParam", JSON.stringify({"topOperCd": "O000002", "topAssignCd": "S000500", "menuDay": date})); // Note: If the date is 0, it is changed to today.
-
-    fetch(url.toString())
-    .then((response) => response.json())
-    .then((data) => callback(data));
-}
+    }
+};
 
 // ==================================================
 // Storage & Database
 // ==================================================
-async function storageQuota() {
-    if (navigator.storage && navigator.storage.estimate) { 
-        const estimate = await navigator.storage.estimate();
-        return estimate.quota;
-    } else {
-        return -1;
-    }
-}
-
-async function storageUsage() {
-    if (navigator.storage && navigator.storage.estimate) { 
-        const estimate = await navigator.storage.estimate();
-        return estimate.usage;
-    } else {
-        return -1;
-    }
+var storage = {
+    quota: async () => {
+        if (navigator.storage && navigator.storage.estimate) { 
+            const estimate = await navigator.storage.estimate();
+            return estimate.quota;
+        } else {
+            return -1;
+        }
+    },
+    usage: async () => {
+        if (navigator.storage && navigator.storage.estimate) { 
+            const estimate = await navigator.storage.estimate();
+            return estimate.usage;
+        } else {
+            return -1;
+        }
+    },
+    localStorage: window.localStorage,
+    sessionStorage: window.sessionStorage
 }
 
 // From : https://stackoverflow.com/questions/15861630/how-can-i-remove-a-whole-indexeddb-database-from-javascript
@@ -174,29 +168,28 @@ function removeDatabase(callback) {
 // EVENT LISTENERS
 // ==================================================
 window.addEventListener('load', () => {
-    if (!isDevMode && !isInStandaloneMode) {
-        throwError("ERR_NOT_PWA", "애플리케이션 설치 상태에서만 사용 가능한 기능입니다.");
+    if (!app.isDevMode && !app.isInStandaloneMode) {
+        app.error("ERR_NOT_PWA", "애플리케이션 설치 상태에서만 사용 가능한 기능입니다.");
         return;
     }
 
-    readSettings();
+    settings.read();
 
     // Note: Add event listeners to detect network connection changes.
-    isOnline = navigator.onLine;
-    displayNetworkStatus(isOnline);
+    displayNetworkStatus(app.isOnline);
 
     window.addEventListener("online", () => {
-        isOnline = true;
+        app.isOnline = true;
         displayNetworkStatus(true);
     });
         
     window.addEventListener("offline", () => {
-        isOnline = false;
+        app.isOnline = false;
         displayNetworkStatus(false);
     });
 });
 
 
 window.addEventListener('pagehide', () => {
-    writeSettings();
+    settings.write();
 });
